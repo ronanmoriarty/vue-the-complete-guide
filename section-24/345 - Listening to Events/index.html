@@ -7,8 +7,9 @@
   </head>
   <body>
     <div id="app">
-      <button>Click me</button>
+      <button v-on:click="increase">Click me</button>
       <p>{{ counter }}</p>
+      <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
     </div>
     <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
     <script src="app.js"></script>
