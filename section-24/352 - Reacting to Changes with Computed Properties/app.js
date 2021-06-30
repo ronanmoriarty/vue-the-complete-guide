@@ -4,16 +4,11 @@ new Vue({
 	el: '#app',
 	data: {
 		counter: 0,
-		result: ''
+		secondCounter: 0
 	},
 	methods: {
-		increase: function() {
-			this.counter++;
-			this.result = this.counter > 5 ? 'Greater than 5' : 'Less than or equal to 5';
-		},
-		decrease: function() {
-			this.counter--;
-			this.result = this.counter > 5 ? 'Greater than 5' : 'Less than or equal to 5';
+		result() {
+			return this.counter > 5 ? 'Greater than 5' : 'Less than or equal to 5';
 		}
 	}
 });
