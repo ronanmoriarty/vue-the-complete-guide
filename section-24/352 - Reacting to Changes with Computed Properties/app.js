@@ -6,8 +6,15 @@ new Vue({
 		counter: 0,
 		secondCounter: 0
 	},
+	computed: {
+		output: function() {
+			console.log('output');
+			return this.counter > 5 ? 'Greater than 5' : 'Less than or equal to 5';
+		}
+	},
 	methods: {
-		result() {
+		result: function() {
+			console.log('result');
 			return this.counter > 5 ? 'Greater than 5' : 'Less than or equal to 5';
 		}
 	}
