@@ -21,6 +21,27 @@
       </div>
     </div>
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>
-    <script src="app.js"></script>
+    <script>
+        new Vue({
+        el: '#exercise',
+        data: {
+            value: 0,
+            timeout: 5000
+        },
+        watch: {
+            result: function(value) {
+                const vm = this;
+                setTimeout(() => {
+                    this.value = 0;
+                }, this.timeout);
+            }
+        },
+        computed: {
+            result: function() {
+                return this.value < 37 ? 'Not there yet' : 'Done';
+            }
+        }
+    });
+    </script>
   </body>
 </html>
