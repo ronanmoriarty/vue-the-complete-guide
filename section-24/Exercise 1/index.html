@@ -15,11 +15,11 @@
          <p>{{ getRandomNumber() }}</p>
          <!-- 4) Search any image on Google and output it here by binding the "src" attribute -->
          <div>
-             <img v-bind:src="imageLink" style="width:100px;height:100px">
+             <img :src="imageLink" style="width:100px;height:100px">
          </div>
          <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
          <div>
-             <input type="text" v-bind:value="name">
+             <input type="text" :value="name">
          </div>
      </div>
     <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>

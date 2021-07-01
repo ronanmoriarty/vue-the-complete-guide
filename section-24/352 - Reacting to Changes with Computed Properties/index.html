@@ -7,9 +7,9 @@
   </head>
   <body>
     <div id="app">
-      <button v-on:click="counter++">Increase</button>
-      <button v-on:click="secondCounter++">Increase (second)</button>
-      <button v-on:click="counter--">Decrease</button>
+      <button @click="counter++">Increase</button>
+      <button @click="secondCounter++">Increase (second)</button>
+      <button @click="counter--">Decrease</button>
       <p>Counter: {{ counter }} | {{ secondCounter }}</p>
       <p>Result: {{ result() }} | {{ output }}</p>
     </div>
