@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 4</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+  </head>
+  <body>
+    <h3>Exercise 1</h3>
+    <div id="exercise">
+      <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+      <div>
+        <button @click="startEffect">Start Effect</button>
+        <div id="effect" :class="effectClass"></div>
+      </div>
+      <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+      <h3>Exercise 2</h3>
+      <div :class="[colour, border]">I got no class :(</div>
+      <!-- 3) Let the user enter a class (create some example classes) and attach it -->
+      <h3>Exercise 3</h3>
+      <div>
+        <input type="text" v-model="inputClass" />
+        <div :class="inputClass"></div>
+      </div>
+      <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+      <h3>Exercise 4</h3>
+      <div>
+        <input type="text" v-model="e4class" />
+        <input type="text" v-model="e4classApplied" />
+        <div :class="e4"></div>
+      </div>
+      <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+      <h3>Exercise 5</h3>
+      <div>
+        <input type="text" v-model="backgroundColour" />
+        <div :style="e5Style"></div>
+      </div>
+      <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+      <h3>Exercise 6</h3>
+      <div>
+        <button @click="startProgress">Start Progress</button>
+        <div :style="progress"></div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
