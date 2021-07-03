@@ -45,7 +45,7 @@
       <section class="row log">
         <div class="small-12 columns">
           <ul>
-            <li v-for="log in logs">{{log}}</li>
+            <li v-for="(log, index) in logs" :class="index % 2 === 0 ? 'player-turn' : 'monster-turn'">{{log}}</li>
           </ul>
         </div>
       </section>

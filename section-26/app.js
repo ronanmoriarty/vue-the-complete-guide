@@ -32,7 +32,6 @@ new Vue({
                 healthBoost = 100 - this.yourHealth;
             }
             this.yourHealth += healthBoost;
-            this.updateLog(`Player gets health boost of ${healthBoost}`);
             this.inflictDamageOnPlayer1(this.normalAttackLimit);
             this.checkIfGameOver();
         },
@@ -73,6 +72,7 @@ new Vue({
         },
         giveUp: function() {
             this.gameStarted = false;
+            this.updateLog('Player gave up.');
         }
     },
     computed: {
