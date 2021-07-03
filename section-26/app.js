@@ -35,7 +35,11 @@ new Vue({
                 healthBoost = 100 - this.yourHealth;
             }
             this.yourHealth += healthBoost;
-            this.inflictDamageOnPlayer1(20);
+            this.turns.unshift({
+                message: `Player heals by ${healthBoost}`,
+                isMonsterTurn: false
+            });
+            this.inflictDamageOnPlayer1(5, 10);
         },
         inflictDamageOnMonster: function(lowerLimit, upperLimit) {
             const damage = this.getRandomDamage(lowerLimit, upperLimit);
@@ -78,7 +82,9 @@ new Vue({
             return false;
         },
         getRandomDamage: function(lowerLimit, upperLimit) {
-            return Math.max(Math.floor(Math.random() * upperLimit) + 1, lowerLimit);
+            const damage = Math.max(Math.floor(Math.random() * upperLimit) + 1, lowerLimit);
+            console.log(`Damage: ${damage}; Lower Limit: ${lowerLimit}; Upper Limit: ${upperLimit}`);
+            return damage;
         },
         giveUp: function() {
             this.gameStarted = false;
