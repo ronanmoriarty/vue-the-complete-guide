@@ -36,7 +36,6 @@ new Vue({
             }
             this.yourHealth += healthBoost;
             this.inflictDamageOnPlayer1(20);
-            this.checkIfGameOver();
         },
         inflictDamageOnMonster: function(lowerLimit, upperLimit) {
             const damage = this.getRandomDamage(lowerLimit, upperLimit);
@@ -71,19 +70,6 @@ new Vue({
                 return true;
             }
             return false;
-        },
-        checkIfGameOver: function() {
-            if(this.yourHealth === 0 && this.monsterHealth === 0) {
-                this.updateLog('Draw');
-            } else if (this.yourHealth === 0) {
-                this.updateLog('Monster won');
-            } else if (this.monsterHealth === 0) {
-                this.updateLog('You won');
-            }
-
-            if(this.yourHealth === 0 || this.monsterHealth === 0) {
-                this.gameStarted = false;
-            }
         },
         updateLog: function(message) {
             this.logs.push(message);
