@@ -4,9 +4,6 @@ new Vue({
         gameStarted: false,
         yourHealth: 100,
         monsterHealth: 100,
-        normalAttackLimit: 20,
-        specialAttackLimit: 40,
-        healthBoostLimit: 30,
         logs: []
     },
     methods: {
@@ -17,34 +14,34 @@ new Vue({
             this.logs = [];
         },
         attack: function() {
-            this.inflictDamageOnMonster(this.normalAttackLimit);
-            this.inflictDamageOnPlayer1(this.normalAttackLimit);
+            this.inflictDamageOnMonster(3, 20);
+            this.inflictDamageOnPlayer1(3, 20);
             this.checkIfGameOver();
         },
         specialAttack: function() {
-            this.inflictDamageOnMonster(this.specialAttackLimit);
-            this.inflictDamageOnPlayer1(this.specialAttackLimit);
+            this.inflictDamageOnMonster(10, 40);
+            this.inflictDamageOnPlayer1(10, 40);
             this.checkIfGameOver();
         },
         heal: function() {
-            let healthBoost = Math.floor(Math.random() * this.healthBoostLimit);
+            let healthBoost = Math.floor(Math.random() * 20);
             if(healthBoost + this.yourHealth > 100) {
                 healthBoost = 100 - this.yourHealth;
             }
             this.yourHealth += healthBoost;
-            this.inflictDamageOnPlayer1(this.normalAttackLimit);
+            this.inflictDamageOnPlayer1(20);
             this.checkIfGameOver();
         },
-        inflictDamageOnMonster: function(limit) {
-            const damage = this.getRandomDamage(limit);
+        inflictDamageOnMonster: function(lowerLimit, upperLimit) {
+            const damage = this.getRandomDamage(lowerLimit, upperLimit);
             this.monsterHealth -= damage;
             if(this.monsterHealth < 0) {
                 this.monsterHealth = 0;
             }
             this.updateLog(`Player hits monster. Inflicts damage of ${damage}`);
         },
-        inflictDamageOnPlayer1: function(limit) {
-            const damage = this.getRandomDamage(limit);
+        inflictDamageOnPlayer1: function(lowerLimit, upperLimit) {
+            const damage = this.getRandomDamage(lowerLimit, upperLimit);
             this.yourHealth -= damage;
             if(this.yourHealth < 0) {
                 this.yourHealth = 0;
@@ -67,8 +64,8 @@ new Vue({
         updateLog: function(message) {
             this.logs.push(message);
         },
-        getRandomDamage: function(limit) {
-            return Math.floor(Math.random() * limit);
+        getRandomDamage: function(lowerLimit, upperLimit) {
+            return Math.max(Math.floor(Math.random() * upperLimit) + 1, lowerLimit);
         },
         giveUp: function() {
             this.gameStarted = false;
