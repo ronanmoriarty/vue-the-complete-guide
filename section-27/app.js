@@ -4,7 +4,6 @@ var data = {
 };
 
 var vm1 = new Vue({
-  el: '#app1',
   data: data,
   methods: {
     show: function() {
@@ -28,8 +27,10 @@ var vm1 = new Vue({
   }
 });
 
+vm1.$mount('#app1');
+
 console.log(vm1.$data === data);
-vm1.$refs.heading.innerText = 'Something else';
+// vm1.$refs.heading.innerText = 'Something else';
 
 setTimeout(() => {
   vm1.title = 'Changed by timer';
