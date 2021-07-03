@@ -4,14 +4,14 @@ new Vue({
         gameStarted: false,
         yourHealth: 100,
         monsterHealth: 100,
-        logs: []
+        turns: []
     },
     methods: {
         startGame: function() {
             this.gameStarted = true;
             this.yourHealth = 100;
             this.monsterHealth = 100;
-            this.logs = [];
+            this.turns = [];
         },
         attack: function() {
             this.inflictDamageOnMonster(3, 20);
@@ -43,7 +43,10 @@ new Vue({
             if(this.monsterHealth < 0) {
                 this.monsterHealth = 0;
             }
-            this.updateLog(`Player hits monster. Inflicts damage of ${damage}`);
+            this.turns.unshift({
+                message: `Player hits monster. Inflicts damage of ${damage}`,
+                isMonsterTurn: false
+            });
         },
         inflictDamageOnPlayer1: function(lowerLimit, upperLimit) {
             const damage = this.getRandomDamage(lowerLimit, upperLimit);
@@ -51,7 +54,10 @@ new Vue({
             if(this.yourHealth < 0) {
                 this.yourHealth = 0;
             }
-            this.updateLog(`Monster hits player. Inflicts damage of ${damage}`);
+            this.turns.unshift({
+                message: `Monster hits player. Inflicts damage of ${damage}`,
+                isMonsterTurn: true
+            });
         },
         checkWin: function() {
             if(this.monsterHealth <= 0) {
@@ -71,15 +77,11 @@ new Vue({
             }
             return false;
         },
-        updateLog: function(message) {
-            this.logs.push(message);
-        },
         getRandomDamage: function(lowerLimit, upperLimit) {
             return Math.max(Math.floor(Math.random() * upperLimit) + 1, lowerLimit);
         },
         giveUp: function() {
             this.gameStarted = false;
-            this.updateLog('Player gave up.');
         }
     },
     computed: {
