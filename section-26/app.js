@@ -5,7 +5,8 @@ new Vue({
         yourHealth: 100,
         monsterHealth: 100,
         normalAttackLimit: 20,
-        specialAttackLimit: 40
+        specialAttackLimit: 40,
+        healthBoostLimit: 30
     },
     methods: {
         startGame: function() {
@@ -20,6 +21,10 @@ new Vue({
         specialAttack: function() {
             this.inflictDamageOnMonster(this.specialAttackLimit);
             this.inflictDamageOnPlayer1(this.specialAttackLimit);
+        },
+        heal: function() {
+            this.yourHealth += Math.floor(Math.random() * this.healthBoostLimit);
+            this.inflictDamageOnPlayer1(this.normalAttackLimit);
         },
         inflictDamageOnMonster: function(limit) {
             this.monsterHealth -= this.getRandomDamage(limit);
