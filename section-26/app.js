@@ -6,6 +6,9 @@ new Vue({
     methods: {
         startGame: function() {
             this.gameStarted = true;
+        },
+        giveUp: function() {
+            this.gameStarted = false;
         }
     }
 });
