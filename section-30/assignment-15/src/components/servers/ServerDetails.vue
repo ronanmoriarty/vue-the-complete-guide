@@ -1,6 +1,9 @@
 <template>
   <div class="col-xs-12 col-sm-6">
-    <p v-if="id">Server #{{ id }}</p>
+    <div v-if="id">
+      <p>Server #{{ id }}</p>
+      <p>Status: {{ status }}</p>
+    </div>
     <p v-else>No server selected</p>
     <button @click="reset">Reset to Normal</button>
   </div>
@@ -10,19 +13,22 @@
   import { eventBus } from '../../main';
 
   export default {
-    data: function() {
+    data: function () {
       return {
-        id: undefined
+        id: undefined,
+        status: undefined
       }
     },
     methods: {
       reset() {
+        this.status = 'Normal';
         eventBus.$emit('reset', this.id);
       }
     },
     created() {
-      eventBus.$on('selected', (id) => {
-        this.id = id;
+      eventBus.$on('selectedServer', (server) => {
+        this.id = server.id;
+        this.status = server.status;
       });
     }
   }

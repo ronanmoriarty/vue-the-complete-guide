@@ -6,8 +6,6 @@
 </template>
 
 <script>
-    import { eventBus } from '../../main';
-
     export default {
         props: {
             id: {
@@ -21,8 +19,7 @@
         },
         methods: {
             selected() {
-                // this.$emit('selected', this.id);
-                eventBus.$emit('selected', this.id);
+                this.$emit('selected', this.id);
             }
         }
     }

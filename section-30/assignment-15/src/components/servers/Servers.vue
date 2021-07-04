@@ -6,7 +6,7 @@
         :key="server.id"
         :id="server.id"
         :status="server.status"
-        @selected="selected = $event"
+        @selected="selected"
       ></server>
     </ul>
   </div>
@@ -24,8 +24,15 @@ export default {
         { id: 2, status: 'Critical' },
         { id: 3, status: 'Unknown' },
         { id: 4, status: 'Normal' }
-      ],
-      selected: undefined
+      ]
+    }
+  },
+  methods: {
+    selected(id) {
+      const selectedServer = this.servers.find(server => server.id === id);
+      if(selectedServer) {
+        eventBus.$emit('selectedServer', selectedServer);
+      }
     }
   },
   components: {
