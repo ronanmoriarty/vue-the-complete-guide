@@ -9,9 +9,9 @@
 </template>
 
 <script>
-    import Header from './MyHeader.vue';
-    import Servers from './MyServers.vue';
-    import Footer from './MyFooter.vue';
+    import Header from './components/shared/MyHeader.vue';
+    import Servers from './components/servers/MyServers.vue';
+    import Footer from './components/shared/MyFooter.vue';
 
     export default {
         components: {
