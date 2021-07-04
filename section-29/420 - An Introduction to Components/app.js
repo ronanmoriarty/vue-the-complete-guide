@@ -1,17 +1,28 @@
-Vue.component("my-cmp", {
-  data: function() {
-      return {
-        status: "Critical",
-      };
+var cmp = {
+  data: function () {
+    return {
+      status: "Critical",
+    };
   },
-  template: "<p>Server Status: {{ status }}(<button @click='changeStatus'>Change</button>)</p>",
+  template:
+    "<p>Server Status: {{ status }}(<button @click='changeStatus'>Change</button>)</p>",
   methods: {
-      changeStatus: function() {
-        this.status = 'Normal'
-      }
+    changeStatus: function () {
+      this.status = "Normal";
+    },
+  },
+};
+
+new Vue({
+  el: "#app1",
+  components: {
+      'my-cmp': cmp
   }
 });
 
 new Vue({
-  el: "#app"
+  el: "#app2",
+  components: {
+      'my-cmp': cmp
+  }
 });
