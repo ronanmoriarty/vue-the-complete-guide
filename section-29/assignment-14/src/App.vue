@@ -3,18 +3,8 @@
         <my-header></my-header>
         <hr>
         <div class="row">
-            <div class="col-xs-12 col-sm-6">
-                <ul class="list-group">
-                    <li
-                            class="list-group-item"
-                            v-for="index in 5">
-                        Server #{{ index }}
-                    </li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-6">
-                <p>Server Details are currently not updated</p>
-            </div>
+            <my-server-list></my-server-list>
+            <my-server-warning></my-server-warning>
         </div>
         <hr>
         <div class="row">
@@ -29,10 +19,14 @@
 
 <script>
     import Header from './MyHeader.vue';
+    import ServerList from './MyServersList.vue';
+    import ServerWarning from './MyServerWarning.vue';
 
     export default {
         components: {
-            'my-header': Header
+            'my-header': Header,
+            'my-server-list': ServerList,
+            'my-server-warning': ServerWarning
         }
     }
 </script>
