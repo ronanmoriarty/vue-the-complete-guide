@@ -11,7 +11,7 @@ export default {
     props: {
         myName: {
             type: String,
-            required: true
+            default: 'Sadhbh'
         }
     },
     methods: {
