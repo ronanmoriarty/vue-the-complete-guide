@@ -1,12 +1,6 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <header>
-                    <h1>Server Status</h1>
-                </header>
-            </div>
-        </div>
+        <my-header></my-header>
         <hr>
         <div class="row">
             <div class="col-xs-12 col-sm-6">
@@ -34,6 +28,13 @@
 </template>
 
 <script>
+    import Header from './MyHeader.vue';
+
+    export default {
+        components: {
+            'my-header': Header
+        }
+    }
 </script>
 
 <style>
