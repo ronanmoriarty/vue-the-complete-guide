@@ -4,24 +4,20 @@
         <hr>
         <my-servers></my-servers>
         <hr>
-        <div class="row">
-            <div class="col-xs-12">
-                <footer>
-                    <p>All Servers are managed here</p>
-                </footer>
-            </div>
-        </div>
+        <my-footer></my-footer>
     </div>
 </template>
 
 <script>
     import Header from './MyHeader.vue';
     import Servers from './MyServers.vue';
+    import Footer from './MyFooter.vue';
 
     export default {
         components: {
             'my-header': Header,
-            'my-servers': Servers
+            'my-servers': Servers,
+            'my-footer': Footer
         }
     }
 </script>
