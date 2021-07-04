@@ -3,7 +3,7 @@
         <h3>You may edit the User here</h3>
         <p>Edit me!</p>
         <p>User Age: {{ userAge }}</p>
-        <button @click="editAge">Edit Age</button>
+        <button @click="editAge">Edit Age (using eventBus method)</button>
     </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
         editAge() {
             this.userAge = 21;
             // this.$emit('ageWasEdited', this.userAge);
-            eventBus.$emit('ageWasEdited', this.userAge);
+            // eventBus.$emit('ageWasEdited', this.userAge);
+            eventBus.changeAge(this.userAge);
         }
     }
 }
