@@ -2,18 +2,20 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <button @click="selectedComponent='appQuote'">Quote</button>
-        <button @click="selectedComponent='appAuthor'">Author</button>
-        <button @click="selectedComponent='appNew'">New</button>
-        <hr>
+        <button @click="selectedComponent = 'appQuote'">Quote</button>
+        <button @click="selectedComponent = 'appAuthor'">Author</button>
+        <button @click="selectedComponent = 'appNew'">New</button>
+        <hr />
         <p>Selected Component: {{ selectedComponent }}</p>
         <!-- <app-quote>
           <h2 slot="title">{{ quoteTitle }}</h2>
           <p>A wonderful quote!</p>
         </app-quote> -->
-        <component :is="selectedComponent">
+        <keep-alive>
+          <component :is="selectedComponent">
             <p>Default Content</p>
-        </component>
+          </component>
+        </keep-alive>
       </div>
     </div>
   </div>
@@ -28,7 +30,7 @@ export default {
   data: function () {
     return {
       quoteTitle: "The Quote",
-      selectedComponent: 'appQuote'
+      selectedComponent: "appQuote",
     };
   },
   components: {
