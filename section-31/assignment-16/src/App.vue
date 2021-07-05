@@ -3,22 +3,22 @@
         <div class="row">
             <div class="col-xs-12">
                 <br>
-                <button class="btn btn-primary">Load Blue Template</button>
-                <button class="btn btn-success">Load Green Template</button>
-                <button class="btn btn-danger">Load Red Template</button>
+                <button class="btn btn-primary" @click="selected = 'appBlue'">Load Blue Template</button>
+                <button class="btn btn-success" @click="selected = 'appGreen'">Load Green Template</button>
+                <button class="btn btn-danger" @click="selected = 'appRed'">Load Red Template</button>
+                <component :is="selected">
+                    <p>This is the Content</p>
+                </component>
                 <hr>
-                <app-blue>
-                    <h1>Some heading</h1>
-                    <p>Some text</p>
+                <!-- <app-blue>
+                    <p>This is the Content</p>
                 </app-blue>
                 <app-green>
-                    <h1>Some heading</h1>
-                    <p>Some text</p>
+                    <p>This is the Content</p>
                 </app-green>
                 <app-red>
-                    <h1>Some heading</h1>
-                    <p>Some text</p>
-                </app-red>
+                    <p>This is the Content</p>
+                </app-red> -->
             </div>
         </div>
     </div>
@@ -30,10 +30,26 @@
     import Red from './components/Red.vue';
 
     export default {
+        data: function() {
+            return {
+                selected: 'appBlue'
+            };
+        },
         components: {
             appBlue: Blue,
             appGreen: Green,
             appRed: Red
+        },
+        methods: {
+            selectBlue() {
+                this.selected = 'appBlue';
+            },
+            selectGreen() {
+                this.selected = 'appGreen';
+            },
+            selectRed() {
+                this.selected = 'appRed';
+             }
         }
     }
 </script>
