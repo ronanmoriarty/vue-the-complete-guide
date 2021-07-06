@@ -1,14 +1,29 @@
 <template>
-    <div class="container">
-    
-    </div>
+  <div class="container">
+    <app-quotes :quotes="quotes"></app-quotes>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import Quotes from "./components/Quotes.vue";
+export default {
+  data: function () {
+    return {
+      quotes: ["Just a quote to see something", "Some other quote"],
+      maxQuotes: 10,
+    };
+  },
+  components: {
+    appQuotes: Quotes,
+  },
+  computed: {
+    progress: function () {
+      return this.quotes.length;
+    },
+  },
+};
 </script>
 
 <style>
+
 </style>
