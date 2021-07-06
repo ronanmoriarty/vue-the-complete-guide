@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <app-progress :progress="progress"></app-progress>
     <app-new @quoteAdded="quoteAdded"></app-new>
     <app-quotes :quotes="quotes"></app-quotes>
   </div>
@@ -8,6 +9,7 @@
 <script>
 import Quotes from "./components/Quotes.vue";
 import New from "./components/New.vue";
+import Progress from "./components/Progress.vue";
 
 export default {
   data: function () {
@@ -29,10 +31,11 @@ export default {
   components: {
     appQuotes: Quotes,
     appNew: New,
+    appProgress: Progress
   },
   computed: {
     progress: function () {
-      return this.quotes.length;
+      return 100 * (this.quotes.length / this.maxQuotes);
     },
   },
   methods: {
