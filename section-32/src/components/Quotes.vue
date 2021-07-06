@@ -25,5 +25,7 @@ export default {
   display: flex;
   justify-content: center;
   align-content: center;
+  width: 100%;
+  max-width: 800px;
 }
 </style>

@@ -18,7 +18,7 @@ export default {
 <style scoped>
     .quote {
         width: 300px;
-        /* height: 100px; */
+        height: 100px;
         margin: 20px;
         padding: 20px;
         text-align: center;
