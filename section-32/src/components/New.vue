@@ -24,7 +24,7 @@ export default {
 <style scoped>
     div {
         padding: 20px;
-        margin: 20px;
+        margin: 20px auto;
         border: 1px solid steelblue;
         display: flex;
         justify-content: center;
