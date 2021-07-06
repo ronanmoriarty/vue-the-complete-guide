@@ -1,6 +1,6 @@
 <template>
   <div class="quotes">
-    <app-quote v-for="quote in quotes" :key="quote" :quote="quote"> </app-quote>
+    <app-quote v-for="quote in quotes" :key="quote" :quote="quote" @remove="remove"> </app-quote>
   </div>
 </template>
 
@@ -17,6 +17,15 @@ export default {
   components: {
     appQuote: Quote,
   },
+  methods: {
+    remove(quote) {
+        // console.log(`Remove ${quote}`);
+        const index = this.quotes.findIndex(q => q === quote);
+        if(index > -1) {
+            this.quotes.splice(index, 1);
+        }
+    }
+  }
 };
 </script>
 

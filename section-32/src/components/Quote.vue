@@ -1,5 +1,5 @@
 <template>
-    <div class="quote">
+    <div class="quote" @click="remove">
         {{ quote }}
     </div>
 </template>
@@ -10,6 +10,11 @@ export default {
         quote: {
             type: String,
             required: true
+        }
+    },
+    methods: {
+        remove() {
+            this.$emit('remove', this.quote);
         }
     }
 }
