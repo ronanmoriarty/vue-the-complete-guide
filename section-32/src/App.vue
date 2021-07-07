@@ -3,6 +3,11 @@
     <app-progress :progress="progress"></app-progress>
     <app-new-quote @quoteAdded="quoteAdded"></app-new-quote>
     <app-quote-grid :quotes="quotes"></app-quote-grid>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <div class="alert alert-info">Info: Click on a quote to delete it.</div>
+      </div>
+    </div>
   </div>
 </template>
 
