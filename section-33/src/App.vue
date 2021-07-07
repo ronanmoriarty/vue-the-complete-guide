@@ -39,7 +39,8 @@
                     <textarea
                             id="message"
                             rows="5"
-                            class="form-control"></textarea>
+                            class="form-control"
+                            v-model="message"></textarea>
                 </div>
             </div>
             <div class="row">
@@ -107,7 +108,7 @@
                         <p>Mail: {{ userData.email }} ({{ userData.email.length }})</p>
                         <p>Password: {{ userData.password }} ({{ userData.password.length }})</p>
                         <p>Age: {{ userData.age }} ({{ typeof userData.age }})</p>
-                        <p>Message: </p>
+                        <p style="white-space: pre">Message: {{ message }}</p>
                         <p><strong>Send Mail?</strong></p>
                         <ul>
                             <li></li>
@@ -126,6 +127,7 @@
     export default {
         data() {
             return {
+                message: 'Some text',
                 userData: {
                     email: '',
                     password: '',
