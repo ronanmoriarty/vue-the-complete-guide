@@ -19,6 +19,7 @@ export default {
 </script>
 
 <style scoped>
+
 .panel-body {
   font-family: "Arizonia", cursive;
   font-size: 24px;
@@ -27,13 +28,6 @@ export default {
 
 .quote {
   cursor: pointer;
-  /* width: 300px;
-  height: 100px;
-  margin: 20px;
-  padding: 20px;
-  text-align: center;
-  border: 1px solid steelblue;
-  overflow: hidden; */
 }
 
 .quote:hover {

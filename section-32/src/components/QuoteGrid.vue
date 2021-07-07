@@ -26,12 +26,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-div {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-wrap: wrap;
-}
-</style>

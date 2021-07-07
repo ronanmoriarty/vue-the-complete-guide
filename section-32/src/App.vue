@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <app-progress :progress="progress"></app-progress>
+    <app-header :quoteCount="quotes.length" :maxQuotes="maxQuotes"></app-header>
     <app-new-quote @quoteAdded="quoteAdded"></app-new-quote>
     <app-quote-grid :quotes="quotes" @quoteDeleted="deleteQuote"></app-quote-grid>
     <div class="row">
@@ -12,9 +12,9 @@
 </template>
 
 <script>
+import Header from "./components/Header.vue";
 import QuoteGrid from "./components/QuoteGrid.vue";
 import NewQuote from "./components/NewQuote.vue";
-import Progress from "./components/Progress.vue";
 
 export default {
   data: function () {
@@ -34,20 +34,18 @@ export default {
     };
   },
   components: {
+    appHeader: Header,
     appQuoteGrid: QuoteGrid,
-    appNewQuote: NewQuote,
-    appProgress: Progress
-  },
-  computed: {
-    progress: function () {
-      return 100 * (this.quotes.length / this.maxQuotes);
-    },
+    appNewQuote: NewQuote
   },
   methods: {
     quoteAdded(quote) {
-      if (this.quotes.length < this.maxQuotes) {
-        this.quotes.push(quote);
+      if (this.quotes.length >= this.maxQuotes) {
+        alert(`Maximum number of quotes ${this.maxQuotes} reached.`);
+        return;
       }
+
+      this.quotes.push(quote);
     },
     deleteQuote(index) {
       this.quotes.splice(index, 1);
@@ -55,5 +53,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
