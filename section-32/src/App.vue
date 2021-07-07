@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <app-progress :progress="progress"></app-progress>
-    <app-new @quoteAdded="quoteAdded"></app-new>
-    <app-quotes :quotes="quotes"></app-quotes>
+    <app-new-quote @quoteAdded="quoteAdded"></app-new-quote>
+    <app-quote-grid :quotes="quotes"></app-quote-grid>
   </div>
 </template>
 
 <script>
-import Quotes from "./components/Quotes.vue";
-import New from "./components/New.vue";
+import QuoteGrid from "./components/QuoteGrid.vue";
+import NewQuote from "./components/NewQuote.vue";
 import Progress from "./components/Progress.vue";
 
 export default {
@@ -29,8 +29,8 @@ export default {
     };
   },
   components: {
-    appQuotes: Quotes,
-    appNew: New,
+    appQuoteGrid: QuoteGrid,
+    appNewQuote: NewQuote,
     appProgress: Progress
   },
   computed: {

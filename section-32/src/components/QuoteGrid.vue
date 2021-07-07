@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <app-quote v-for="quote in quotes" :key="quote" :quote="quote" @remove="remove"> </app-quote>
+  <div class="row">
+    <app-quote v-for="quote in quotes" :key="quote" @remove="remove">
+      <span>{{ quote }}</span>
+    </app-quote>
   </div>
 </template>
 

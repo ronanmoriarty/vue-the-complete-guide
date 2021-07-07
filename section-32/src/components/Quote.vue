@@ -1,35 +1,42 @@
 <template>
-    <div class="quote" @click="remove">
-        {{ quote }}
+  <div class="col-sm-6 col-md-4 col-lg-3" @click="remove">
+    <div class="panel panel-default">
+      <div class="panel-body quote">
+        <slot></slot>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-    props: {
-        quote: {
-            type: String,
-            required: true
-        }
+  methods: {
+    remove() {
+      this.$emit("remove", this.quote);
     },
-    methods: {
-        remove() {
-            this.$emit('remove', this.quote);
-        }
-    }
-}
+  },
+};
 </script>
 
 <style scoped>
-    .quote {
-        width: 300px;
-        height: 100px;
-        margin: 20px;
-        padding: 20px;
-        text-align: center;
-        border: 1px solid steelblue;
-        font-family: 'Arizonia', sans-serif;
-        font-size: 28px;
-        overflow: hidden;
-    }
+.panel-body {
+  font-family: "Arizonia", cursive;
+  font-size: 24px;
+  color: #6e6e6e;
+}
+
+.quote {
+  cursor: pointer;
+  /* width: 300px;
+  height: 100px;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid steelblue;
+  overflow: hidden; */
+}
+
+.quote:hover {
+  background-color: #ffe2e2;
+}
 </style>
