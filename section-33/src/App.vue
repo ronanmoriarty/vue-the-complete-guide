@@ -11,7 +11,7 @@
                                 type="text"
                                 id="email"
                                 class="form-control"
-                                v-model="userData.email">
+                                v-model.lazy.trim="userData.email">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -19,7 +19,7 @@
                                 type="password"
                                 id="password"
                                 class="form-control"
-                                v-model="userData.password">
+                                v-model.lazy="userData.password">
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
@@ -27,7 +27,7 @@
                                 type="number"
                                 id="age"
                                 class="form-control"
-                                v-model="userData.age">
+                                v-model.lazy.number="userData.age">
                     </div>
 
                 </div>
@@ -104,9 +104,9 @@
                         <h4>Your Data</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Mail: {{ userData.email }}</p>
-                        <p>Password: {{ userData.password }}</p>
-                        <p>Age: {{ userData.age }}</p>
+                        <p>Mail: {{ userData.email }} ({{ userData.email.length }})</p>
+                        <p>Password: {{ userData.password }} ({{ userData.password.length }})</p>
+                        <p>Age: {{ userData.age }} ({{ typeof userData.age }})</p>
                         <p>Message: </p>
                         <p><strong>Send Mail?</strong></p>
                         <ul>
