@@ -16,7 +16,7 @@
           Delay changing background colour (using modifiers)
         </p>
         <p v-highlight="'red'">Change text colour (default)</p>
-        <p v-local-highlight:background.delayed.blink="'red'">
+        <p v-local-highlight:background.delayed.blink="{mainColour: 'red', secondColour: 'rebeccapurple', interval: 500}">
           Local directive
         </p>
       </div>
@@ -34,8 +34,8 @@ export default {
           delay = 3000;
         }
         if (binding.modifiers["blink"]) {
-          let mainColour = binding.value;
-          let secondColour = "blue";
+          let mainColour = binding.value.mainColour;
+          let secondColour = binding.value.secondColour;
           let currentColour = mainColour;
           setTimeout(() => {
             setInterval(() => {
@@ -45,14 +45,14 @@ export default {
               } else {
                 el.style.color = currentColour;
               }
-            }, 1000);
+            }, binding.value.interval);
           }, delay);
         } else {
           setTimeout(() => {
             if (binding.arg === "background") {
-              el.style.backgroundColor = binding.value;
+              el.style.backgroundColor = binding.value.mainColour;
             } else {
-              el.style.color = binding.value;
+              el.style.color = binding.value.mainColour;
             }
           }, delay);
         }
