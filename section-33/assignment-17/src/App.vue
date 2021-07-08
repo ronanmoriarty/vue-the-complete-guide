@@ -9,7 +9,26 @@
                     <!-- Mail -->
                     <!-- Password -->
                     <!-- Store Data? Yes/No -->
-
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" class="form-control" v-model="firstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" class="form-control" v-model="lastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" class="form-control" v-model="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" id="password" class="form-control" v-model="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="storeData">Store Data?</label>
+                        <input type="checkbox" id="storeData" v-model="storeData">
+                    </div>
                     <!-- Exercise 2 -->
                     <!-- Only display the Form if it has NOT been submitted -->
                     <!-- Display the Data Summary ONCE the Form HAS been submitted -->
@@ -28,10 +47,10 @@
                         <h4>Your Data</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Full Name: </p>
-                        <p>Mail: </p>
-                        <p>Password: </p>
-                        <p>Store in Database?: </p>
+                        <p>Full Name: {{ firstName }} {{ lastName }}</p>
+                        <p>Mail: {{ email }}</p>
+                        <p>Password: {{ password }}</p>
+                        <p>Store in Database?: {{ storeData }}</p>
                     </div>
                 </div>
             </div>
@@ -41,6 +60,15 @@
 
 <script>
     export default {
+        data() {
+            return {
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
+                storeData: false
+            };
+        }
     }
 </script>
 
