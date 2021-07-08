@@ -6,8 +6,8 @@
         type="text"
         id="firstName"
         class="form-control"
-        v-model="firstName"
-        @input="nameChanged"
+        :value="firstName"
+        @input="nameChanged($event, true)"
       />
     </div>
     <div class="form-group">
@@ -16,8 +16,8 @@
         type="text"
         id="lastName"
         class="form-control"
-        v-model="lastName"
-        @input="nameChanged"
+        :value="lastName"
+        @input="nameChanged($event, false)"
       />
     </div>
   </div>
@@ -25,16 +25,16 @@
 
 <script>
 export default {
-  data() {
-      return {
-          firstName: '',
-          lastName: ''
-      }
-  },
   methods: {
-      nameChanged() {
-          const fullName = `${this.firstName} ${this.lastName}`;
-          this.$emit('input', fullName);
+      nameChanged(event, changedFirstName) {
+        let fullName = '';
+        if(changedFirstName) {
+          fullName = `${event.target.value} ${this.lastName}`;
+        } else {
+          fullName = `${this.firstName} ${event.target.value}`;
+        }
+
+        this.$emit('input', fullName);
       }
   },
   props: {
@@ -43,14 +43,19 @@ export default {
       required: true,
     },
   },
-  mounted() {
+  computed: {
+    firstName() {
       const words = this.value.split(' ');
       if(words.length > 0) {
-          this.firstName = words[0];
+        return words[0];
       }
+    },
+    lastName() {
+      const words = this.value.split(' ');
       if(words.length > 1) {
-          this.lastName = words[1];
+        return words[1];
       }
+    },
   }
 };
 </script>
