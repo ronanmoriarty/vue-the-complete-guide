@@ -9,14 +9,7 @@
                     <!-- Mail -->
                     <!-- Password -->
                     <!-- Store Data? Yes/No -->
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" class="form-control" v-model="firstName">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" class="form-control" v-model="lastName">
-                    </div>
+                    <full-name v-model="fullName"></full-name>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" id="email" class="form-control" v-model="email">
@@ -50,7 +43,7 @@
                         <h4>Your Data</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Full Name: {{ firstName }} {{ lastName }}</p>
+                        <p>Full Name: {{ fullName }}</p>
                         <p>Mail: {{ email }}</p>
                         <p>Password: {{ password }}</p>
                         <p>Store in Database?: {{ storeData }}</p>
@@ -62,16 +55,19 @@
 </template>
 
 <script>
+    import FullName from './FullName.vue';
     export default {
         data() {
             return {
-                firstName: '',
-                lastName: '',
+                fullName: 'Ronan Moriarty',
                 email: '',
                 password: '',
                 storeData: false,
                 submitted: false
             };
+        },
+        components: {
+            fullName: FullName
         }
     }
 </script>
