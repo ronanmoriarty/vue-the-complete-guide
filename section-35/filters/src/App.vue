@@ -32,7 +32,7 @@ export default {
   },
   components: {
     appList: List,
-  },
+  }
 };
 </script>
 
