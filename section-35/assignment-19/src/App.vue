@@ -5,6 +5,7 @@
                 <h1>Filters & Mixins</h1>
                 <!-- Exercise 1) -->
                 <!-- Build a local Filter which reverses the Text it is applied on -->
+                {{ text | reverse }}
 
                 <!-- Exercise 2 -->
                 <!-- Build a global Filter which counts the length of a word and it appends it -->
@@ -22,6 +23,16 @@
 
 <script>
     export default {
+        data() {
+            return {
+                text: 'Hello'
+            };
+        },
+        filters: {
+            reverse(value) {
+                return value.split("").reverse().join("");
+            }
+        }
     }
 </script>
 
