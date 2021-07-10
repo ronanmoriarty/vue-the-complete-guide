@@ -46,6 +46,15 @@
                 </transition>
                 <button class="btn btn-primary" @click="selectedComponent === 'app-success-alert' ? selectedComponent = 'app-danger-alert' : selectedComponent = 'app-success-alert'">Toggle Components</button>
                 <hr>
+                <button class="btn btn-primary" @click="addItem">Add Item</button>
+                <hr>
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        v-for="(number, index) in numbers"
+                        :key="number"
+                        @click="removeItem(index)"
+                        style="cursor: pointer">{{ number }}</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -62,7 +71,8 @@ import SuccessAlert from './SuccessAlert.vue'
                 load: true,
                 alertAnimation: 'fade',
                 elementWidth: 100,
-                selectedComponent: 'app-danger-alert'
+                selectedComponent: 'app-danger-alert',
+                numbers: [1, 2, 3, 4, 5]
             }
         },
         components: {
@@ -70,6 +80,13 @@ import SuccessAlert from './SuccessAlert.vue'
             appSuccessAlert: SuccessAlert
         },
         methods: {
+            addItem() {
+                const position = Math.floor(Math.random() * this.numbers.length);
+                this.numbers.splice(position, 0, this.numbers.length + 1);
+            },
+            removeItem(index) {
+                this.numbers.splice(index, 1);
+            },
             beforeEnter(el) {
                 console.log('beforeEnter');
                 el.style.width = this.elementWidth + 'px';
