@@ -1,20 +1,10 @@
 <template>
-    <div class="alert alert-success text-center">
-        <h1>That's Correct!</h1>
-        <hr>
-        <button class="btn btn-primary" @click="onNextQuestion">Next Question</button>
+    <div class="panel">
+        <div class="panel-header">
+            <h2>Answer is Correct!</h2>
+        </div>
+        <div class="panel-body">
+            <button class="btn btn-primary" @click="$emit('nextQuestion')">Next Question</button>
+        </div>
     </div>
 </template>
-<style>
-
-</style>
-<script>
-
-    export default{
-        methods: {
-            onNextQuestion() {
-                this.$emit('confirmed');
-            }
-        }
-    }
-</script>
