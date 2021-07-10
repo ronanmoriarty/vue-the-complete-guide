@@ -23,13 +23,19 @@
                 <!-- Exercise 4 -->
                 <!-- Share the Computed Property rebuilding Exercise 2 via a Mixin -->
                 <h2>Exercise 4</h2>
+                {{ reverseFromMixin }}
+                <br>
+                {{ textWithLengthFromMixin }}
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import { stringMixin } from './stringMixin';
+
     export default {
+        mixins: [ stringMixin ],
         data() {
             return {
                 text: 'Hello'
