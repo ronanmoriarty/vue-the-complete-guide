@@ -5,7 +5,7 @@
     </div>
     <div class="panel-body">
       <div class="col-xs-12 text-center">
-        <button class="btn btn-primary" @click="$emit('nextQuestion')">
+        <button class="btn btn-primary" @click="$emit('confirmed')">
           Next Question
         </button>
       </div>

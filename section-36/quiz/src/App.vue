@@ -11,8 +11,8 @@
         >
           <component
             :is="selectedComponent"
-            @nextQuestion="selectedComponent = 'app-question'"
-            @answeredCorrectly="selectedComponent = 'app-answer'"
+            @confirmed="selectedComponent = 'app-question'"
+            @answered="onAnswer($event)"
           >
           </component>
         </div>
@@ -30,6 +30,15 @@ export default {
     return {
       selectedComponent: "app-question",
     };
+  },
+  methods: {
+    onAnswer(isCorrect) {
+      if (isCorrect) {
+        this.selectedComponent = "app-answer";
+      } else {
+        alert("Sorry! Wrong answer! Try again.");
+      }
+    },
   },
   components: {
     appQuestion: Question,

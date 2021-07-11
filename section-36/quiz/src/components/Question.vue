@@ -9,7 +9,7 @@
         v-for="answer in answers"
         :key="answer.value"
       >
-        <button class="btn btn-primary btn-lg" @click="answered(answer.isCorrect)">
+        <button class="btn btn-primary btn-lg" @click="$emit('answered', answer.isCorrect)">
           {{ answer.value }}
         </button>
       </div>
@@ -62,13 +62,6 @@ export default {
     },
     getRandomOperator() {
       return Math.random() < 0.5 ? ADDITION : SUBTRACTION;
-    },
-    answered(isCorrect) {
-      if (isCorrect) {
-        this.$emit("answeredCorrectly");
-      } else {
-        alert("Sorry! Wrong answer! Try again.");
-      }
     },
   },
   created() {
