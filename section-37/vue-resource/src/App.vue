@@ -31,20 +31,22 @@
                     username: '',
                     email: ''
                 },
-                users: []
+                users: [],
+                resource: {}
             };
         },
         methods: {
             submit() {
-                this.$http.post('', this.user)
-                    .then(response => {
-                        console.log(response);
-                    }, error => {
-                        console.log(error);
-                    });
+                // this.$http.post('data.json', this.user)
+                //     .then(response => {
+                //         console.log(response);
+                //     }, error => {
+                //         console.log(error);
+                //     });
+                this.resource.save({}, this.user);
             },
             fetchData() {
-                this.$http.get('')
+                this.$http.get('data.json')
                     .then(response => {
                         return response.json();
                     }).then(data => {
@@ -55,6 +57,9 @@
                         this.users = resultArray;
                     });
             }
+        },
+        created() {
+            this.resource = this.$resource('data.json');
         }
     }
 </script>
