@@ -1,10 +1,14 @@
 <template>
-    <div class="panel">
-        <div class="panel-header">
-            <h2>Answer is Correct!</h2>
-        </div>
-        <div class="panel-body">
-            <button class="btn btn-primary" @click="$emit('nextQuestion')">Next Question</button>
-        </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">Answer is Correct!</h2>
     </div>
+    <div class="panel-body">
+      <div class="col-xs-12 text-center">
+        <button class="btn btn-primary" @click="$emit('nextQuestion')">
+          Next Question
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
