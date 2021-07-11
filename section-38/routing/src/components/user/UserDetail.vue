@@ -18,5 +18,13 @@ export default {
       },
     };
   },
+  beforeRouteEnter(to, from, next) {
+      if(true) {
+        next();
+      } else {
+        console.log('Cancelling just before detail page loaded');
+        next(false);
+      }
+  }
 };
 </script>
