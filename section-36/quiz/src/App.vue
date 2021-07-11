@@ -66,21 +66,21 @@ export default {
 
     @keyframes flip-out {
         from {
-            transform: rotateY('0deg');
+            transform: rotateY(0deg);
         }
 
         to {
-            transform: rotateY('90deg');
+            transform: rotateY(90deg);
         }
     }
 
     @keyframes flip-in {
         from {
-            transform: rotateY('90deg');
+            transform: rotateY(90deg);
         }
 
         to {
-            transform: rotateY('0deg');
+            transform: rotateY(0deg);
         }
     }
 </style>
