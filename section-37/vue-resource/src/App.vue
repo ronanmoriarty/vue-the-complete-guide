@@ -12,6 +12,12 @@
                     <input type="email" id="email" class="form-control" v-model="user.email">
                 </div>
                 <button class="btn btn-primary" type="submit" @click="submit">Submit</button>
+                <hr>
+                <button class="btn btn-primary" type="submit" @click="fetchData">Get Data</button>
+                <br><br>
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="user in users" :key="user.email">{{ user.username }} - {{ user.email }}</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -24,7 +30,8 @@
                 user: {
                     username: '',
                     email: ''
-                }
+                },
+                users: []
             };
         },
         methods: {
@@ -34,6 +41,18 @@
                         console.log(response);
                     }, error => {
                         console.log(error);
+                    });
+            },
+            fetchData() {
+                this.$http.get('https://vuejs-http-180c1-default-rtdb.europe-west1.firebasedatabase.app/data.json')
+                    .then(response => {
+                        return response.json();
+                    }).then(data => {
+                        const resultArray = [];
+                        for (const key in data) {
+                            resultArray.push(data[key]);
+                        }
+                        this.users = resultArray;
                     });
             }
         }
