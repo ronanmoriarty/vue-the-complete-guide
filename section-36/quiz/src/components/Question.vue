@@ -17,19 +17,42 @@
 </template>
 
 <script>
+    const ADDITION = 1;
+    const SUBTRACTION = 2;
     export default {
         data() {
             return {
                 question: 'some question',
-                answers: [
-                    { value: 1, isCorrect: true },
-                    { value: 2, isCorrect: false },
-                    { value: 3, isCorrect: false },
-                    { value: 4, isCorrect: false },
-                ]
+                answers: []
             };
         },
         methods: {
+            generateQuestion() {
+                const firstOperand = this.getRandomNumber(0, 100);
+                const secondOperand = this.getRandomNumber(0, 100);
+                const operator = this.getRandomOperator();
+                const correctAnswer = operator === ADDITION ? firstOperand + secondOperand : firstOperand - secondOperand;
+                this.question = `What is ${firstOperand} ${operator === ADDITION ? '+' : '-'} ${secondOperand}?`;
+                this.answers = [];
+                for (let index = 0; index < 4; index++) {
+                    const possibleAnswer = this.getRandomNumber(correctAnswer - 10, correctAnswer + 10, correctAnswer);
+                    this.answers.push({ value: possibleAnswer, isCorrect: false });
+                }
+                const correctIndex = this.getRandomNumber(0, 3);
+                this.answers[correctIndex].value = correctAnswer;
+                this.answers[correctIndex].isCorrect = true;
+            },
+            getRandomNumber(min, max, except) {
+                const value = Math.round(Math.random() * (max - min) + min);
+                if(value === except) {
+                    return this.getRandomNumber(min, max, except);
+                }
+
+                return value;
+            },
+            getRandomOperator() {
+                return Math.random() < 0.5 ? ADDITION : SUBTRACTION;
+            },
             answered(isCorrect) {
                 if(isCorrect) {
                     this.$emit('answeredCorrectly');
@@ -37,6 +60,9 @@
                     alert('Sorry! Wrong answer! Try again.');
                 }
             }
+        },
+        created() {
+            this.generateQuestion();
         }
     }
 </script>

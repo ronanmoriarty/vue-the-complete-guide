@@ -14,7 +14,7 @@ import Answer from "./components/Answer.vue";
 export default {
   data() {
     return {
-      selectedComponent: "app-answer",
+      selectedComponent: "app-question",
     };
   },
   components: {
