@@ -1,42 +1,42 @@
+import * as types from '../types';
+
 const state = {
     counter: 0
 };
 
 const getters = {
-    doubleCounter: state => {
+    [types.DOUBLE_COUNTER]: state => {
         return state.counter * 2;
     },
-    stringCounter: state => {
+    [types.CLICK_COUNTER]: state => {
         return state.counter + ' Clicks';
     }
 };
 
 const mutations = {
-    increment: (state, payload) => {
+    [types.INCREMENT]: (state, payload) => {
         state.counter += payload;
     },
-    decrement: (state, payload) => {
+    [types.DECREMENT]: (state, payload) => {
         state.counter -= payload;
     }
 };
 
 const actions = {
-    increment: ({ commit }, payload) => { // destructuring context to only pass in the commit method of context.
-        commit('increment', payload);
+    [types.INCREMENT]: ({ commit }, payload) => { // destructuring context to only pass in the commit method of context.
+        commit(types.INCREMENT, payload);
     },
-    decrement: ({ commit }, payload) => {
-        commit('decrement', payload);
+    [types.DECREMENT]: ({ commit }, payload) => {
+        commit(types.DECREMENT, payload);
     },
-    incrementAsync: ({ commit }, payload) => {
-        console.log(payload);
+    [types.INCREMENT_ASYNC]: ({ commit }, payload) => {
         setTimeout(() => {
-            commit('increment', payload.by);
+            commit(types.INCREMENT, payload.by);
         }, payload.duration || 1000);
     },
-    decrementAsync: ({ commit }, payload) => {
-        console.log(payload);
+    [types.DECREMENT_ASYNC]: ({ commit }, payload) => {
         setTimeout(() => {
-            commit('decrement', payload.by);
+            commit(types.DECREMENT, payload.by);
         }, payload.duration || 1000);
     }
 };
