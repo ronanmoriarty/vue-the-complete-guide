@@ -1,23 +1,26 @@
 <template>
-  <div class="panel panel-default col-sm-6">
-    <div class="panel-heading">
-        <h1 class="panel-title">{{ name }}</h1>
-    </div>
-    <div class="panel-body">
-        <div class="col-sm-9">
-            <form>
-                <div class="form-group">
-                    <label for="sharesToBuy">Shares To Buy:</label>
-                    <input type="text" id="sharesToBuy" class="form-control" v-model="sharesToBuy">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary" @click="buy">Buy</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-sm-3">
-            Price: {{ price }}
-        </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+            {{ name }}
+            <small>Price: {{ price }}</small>
+        </h3>
+      </div>
+      <div class="panel-body">
+            <div class="pull-left">
+              <input
+                type="number"
+                id="sharesToBuy"
+                class="form-control"
+                placeholder="Quantity"
+                v-model="sharesToBuy"
+              />
+            </div>
+            <div class="pull-right">
+              <button class="btn btn-success" @click="buy">Buy</button>
+            </div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,11 +28,15 @@
 <script>
 export default {
   data() {
-      return {
-          sharesToBuy: undefined
-      }
+    return {
+      sharesToBuy: undefined,
+    };
   },
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -40,16 +47,10 @@ export default {
     },
   },
   methods: {
-      buy() {
-          // replace with action later
-          alert(this.sharesToBuy);
-      }
-  }
+    buy() {
+      // replace with action later
+      alert(this.sharesToBuy);
+    },
+  },
 };
 </script>
-
-<style scoped>
-    /* .panel {
-        margin: 20px;
-    } */
-</style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-stock v-for="stock in stocks" :key="stock.name" :name="stock.name" :price="stock.price"></app-stock>
+    <app-stock v-for="stock in stocks" :key="stock.name" :id="stock.id" :name="stock.name" :price="stock.price"></app-stock>
   </div>
 </template>
 
@@ -11,10 +11,10 @@ export default {
   data() {
     return {
       stocks: [
-        { name: "Apple", price: 100 },
-        { name: "Microsoft", price: 120 },
-        { name: "Google", price: 140 },
-        { name: "Amazon", price: 160 },
+        { id: 1, name: "Apple", price: 100 },
+        { id: 2, name: "Microsoft", price: 120 },
+        { id: 3, name: "Google", price: 140 },
+        { id: 4, name: "Amazon", price: 160 },
       ],
     };
   },
