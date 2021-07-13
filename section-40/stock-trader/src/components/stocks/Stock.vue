@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -43,13 +45,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+        'purchase'
+    ]),
     buyStock() {
       const order = {
           stockId: this.stock.id,
           stockPrice: this.stock.price,
           quantity: this.quantity
       };
-      console.log(order);
+      this.purchase(order);
       this.quantity = 0;
     },
   },
