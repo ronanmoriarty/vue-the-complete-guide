@@ -18,4 +18,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+    body {
+        padding: 30px;
+    }
+</style>
