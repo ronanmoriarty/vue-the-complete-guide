@@ -3,22 +3,26 @@
     <div class="panel panel-success">
       <div class="panel-heading">
         <h3 class="panel-title">
-            {{ name }}
-            <small>Price: {{ price }}</small>
+            {{ stock.name }}
+            <small>Price: {{ stock.price }}</small>
         </h3>
       </div>
       <div class="panel-body">
             <div class="pull-left">
               <input
                 type="number"
-                id="sharesToBuy"
                 class="form-control"
                 placeholder="Quantity"
-                v-model="sharesToBuy"
+                v-model="quantity"
               />
             </div>
             <div class="pull-right">
-              <button class="btn btn-success" @click="buy">Buy</button>
+              <button
+                class="btn btn-success"
+                @click="buyStock"
+                :disabled="quantity <= 0 || !Number.isInteger(+quantity)">
+                    Buy
+              </button>
             </div>
       </div>
     </div>
@@ -29,27 +33,24 @@
 export default {
   data() {
     return {
-      sharesToBuy: undefined,
+      quantity: 0
     };
   },
   props: {
-    id: {
-      type: Number,
+    stock: {
+      type: Object,
       required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
+    }
   },
   methods: {
-    buy() {
-      // replace with action later
-      alert(this.sharesToBuy);
+    buyStock() {
+      const order = {
+          stockId: this.stock.id,
+          stockPrice: this.stock.price,
+          quantity: this.quantity
+      };
+      console.log(order);
+      this.quantity = 0;
     },
   },
 };
