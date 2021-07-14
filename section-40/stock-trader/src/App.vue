@@ -28,37 +28,34 @@ export default {
         padding: 30px;
     }
 
-    .fade-enter {
-
-    }
-
     .fade-enter-active {
-        animation: fade-in 0.25s ease-out forwards;
-    }
-
-    .fade-leave {
+        animation: fade-in 0.5s ease-out forwards;
     }
 
     .fade-leave-active {
-        animation: fade-out 0.25s ease-out forwards;
+        animation: fade-out 0.5s ease-out forwards;
     }
 
     @keyframes fade-out {
         from {
+            transform: rotateY(0deg);
             opacity: 1;
         }
 
         to {
+            transform: rotateY(90deg);
             opacity: 0;
         }
     }
 
     @keyframes fade-in {
         from {
+            transform: rotateY(90deg);
             opacity: 0;
         }
 
         to {
+            transform: rotateY(0deg);
             opacity: 1;
         }
     }
