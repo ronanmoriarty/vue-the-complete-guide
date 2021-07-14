@@ -9,8 +9,14 @@ const mutations = {
         state.stocks = stocks;
     },
     'RANDOM_STOCKS' (state) {
-        // i.e. when end of day clicked
-        // Change the prices of the existing stocks
+        state.stocks.forEach(stock => {
+            stock.price = Math.round(stock.price * getRandomPercentageChange());
+        });
+
+        function getRandomPercentageChange() {
+            const factor = Math.random() > 0.5 ? 1 : -1;
+            return 1 + (factor * Math.random() * 0.1);
+        }
     }
 };
 
