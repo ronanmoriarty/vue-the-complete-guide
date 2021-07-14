@@ -27,8 +27,8 @@
               >Save &amp; Load <span class="caret"></span
             ></a>
             <ul class="dropdown-menu">
-              <li><a href="#" @click="save">Save Data</a></li>
-              <li><a href="#">Load Data</a></li>
+              <li><a href="#" @click="saveData">Save Data</a></li>
+              <li><a href="#" @click="loadData">Load Data</a></li>
             </ul>
           </li>
         </ul>
@@ -56,13 +56,14 @@ export default {
         ])
     },
     methods: {
-        ...mapActions([
-            'randomiseStocks'
-        ]),
+        ...mapActions({
+            randomiseStocks: 'randomiseStocks',
+            fetchData: 'loadData'
+        }),
         endDay() {
             this.randomiseStocks();
         },
-        save() {
+        saveData() {
             const data = {
                 funds: this.funds,
                 stockPortfolio: this.stockPortfolio,
@@ -70,6 +71,9 @@ export default {
             };
 
             this.$http.put('data.json', data);
+        },
+        loadData() {
+            this.fetchData();
         }
     }
 }
