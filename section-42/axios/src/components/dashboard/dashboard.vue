@@ -16,7 +16,7 @@
       }
     },
     created() {
-      axios.get('https://vue-axios-19f76-default-rtdb.europe-west1.firebasedatabase.app/users.json')
+      axios.get('/users.json')
         .then(response => {
           const data = response.data;
           const users = [];
