@@ -69,6 +69,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     data () {
       return {
@@ -103,6 +105,9 @@
           terms: this.terms
         }
         console.log(formData)
+        axios.post('https://vue-axios-19f76-default-rtdb.europe-west1.firebasedatabase.app/users.json', formData)
+          .then(response => console.log(response))
+          .catch(error => console.log(error));
       }
     }
   }
