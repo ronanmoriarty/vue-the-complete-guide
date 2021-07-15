@@ -105,7 +105,11 @@
           terms: this.terms
         }
         console.log(formData)
-        axios.post('/users.json', formData)
+        axios.post('/accounts:signUp?key=AIzaSyDP6CktbZ4Xx91Qzsf5DxCVjCaEsaGTX3Q', {
+          email: formData.email,
+          password: formData.password,
+          returnSecureToken: true
+        })
           .then(res => console.log(res))
           .catch(error => console.log(error))
       }

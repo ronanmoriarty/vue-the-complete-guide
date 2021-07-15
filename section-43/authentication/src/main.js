@@ -6,8 +6,8 @@ import router from './router'
 import store from './store'
 
 axios.defaults.baseURL = 'https://vue-axios-19f76-default-rtdb.europe-west1.firebasedatabase.app'
-axios.defaults.headers.common['Authorization'] = 'fasfdsa'
-axios.defaults.headers.get['Accepts'] = 'application/json'
+// axios.defaults.headers.common['Authorization'] = 'fasfdsa'
+// axios.defaults.headers.get['Accepts'] = 'application/json'
 
 const reqInterceptor = axios.interceptors.request.use(config => {
   console.log('Request Interceptor', config)
