@@ -6,10 +6,10 @@
     <nav>
       <ul>
         <li>
-          <router-link to="/signup">Sign Up</router-link>
+          <router-link to="/signup" v-if="!auth">Sign Up</router-link>
         </li>
         <li>
-          <router-link to="/signin">Sign In</router-link>
+          <router-link to="/signin" v-if="!auth">Sign In</router-link>
         </li>
         <li>
           <router-link to="/dashboard" v-if="auth">Dashboard</router-link>
