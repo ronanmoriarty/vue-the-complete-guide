@@ -12,12 +12,22 @@
           <router-link to="/signin">Sign In</router-link>
         </li>
         <li>
-          <router-link to="/dashboard">Dashboard</router-link>
+          <router-link to="/dashboard" v-if="auth">Dashboard</router-link>
         </li>
       </ul>
     </nav>
   </header>
 </template>
+
+<script>
+  export default {
+    computed: {
+      auth() {
+        return this.$store.getters.isAuthenticated;
+      }
+    }
+  }
+</script>
 
 <style scoped>
   #header {

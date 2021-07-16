@@ -1,4 +1,3 @@
-import { restElement } from 'babel-types';
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from './axios-auth';
@@ -84,6 +83,9 @@ export default new Vuex.Store({
   getters: {
     user(state) {
       return state.user;
+    },
+    isAuthenticated(state) {
+      return state.idToken !== null;
     }
   }
 })
