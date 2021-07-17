@@ -1,5 +1,8 @@
 <template>
-    <div>
-        <h1>Coaches List</h1>
-    </div>
+    <section>
+        Filter
+    </section>
+    <section>
+        List of coaches
+    </section>
 </template>
