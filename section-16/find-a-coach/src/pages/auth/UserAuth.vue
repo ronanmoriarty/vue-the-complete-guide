@@ -72,15 +72,16 @@ export default {
       }
 
       this.isLoading = true;
+      const payload = {
+        email: this.email,
+        password: this.password
+      };
 
       try {
         if (this.mode === 'login') {
-          //
+          await this.$store.dispatch('login', payload);
         } else {
-          await this.$store.dispatch('signup', {
-            email: this.email,
-            password: this.password
-          });
+          await this.$store.dispatch('signup', payload);
         }
       } catch (error) {
         this.error = error.message || 'Failed to authenticate.';
