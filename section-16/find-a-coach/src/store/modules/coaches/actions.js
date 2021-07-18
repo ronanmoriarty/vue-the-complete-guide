@@ -25,10 +25,12 @@ export default {
         });
     },
     async loadCoaches(context) {
-        const response = await fetch('https://vue-coach-finder-4c88d-default-rtdb.europe-west1.firebasedatabase.app/coaches.jso');
+        const response = await fetch('https://vue-coach-finder-4c88d-default-rtdb.europe-west1.firebasedatabase.app/coaches.json');
         const responseData = await response.json();
-        if(!responseData.ok) {
-            // some error handling for here later
+        console.log('response', response);
+        if(!response.ok) {
+            const error = new Error(responseData.message || 'Failed to fetch!');
+            throw error;
         }
 
         const coaches = [];
