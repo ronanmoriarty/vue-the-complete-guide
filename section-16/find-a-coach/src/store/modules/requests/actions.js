@@ -25,12 +25,13 @@ export default {
     },
     async fetchRequests({commit, rootGetters}) {
         const coachId = rootGetters.userId;
-        const response = await fetch(`https://vue-coach-finder-4c88d-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json`);
+        const token = rootGetters.token;
+        const response = await fetch(`https://vue-coach-finder-4c88d-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json?auth=${token}`);
 
         const responseData = await response.json();
 
         if(!response.ok) {
-            const error = new Error(responseData.message || 'Failed to send request to create new contact message!');
+            const error = new Error(responseData.message || 'Failed to send request to view your messages!');
             throw error;
         }
 
