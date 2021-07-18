@@ -1,5 +1,9 @@
 <template>
-  <form @submit.prevent="submitForm">
+  <base-dialog :show="!!error" title="An error occured" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
+  <base-spinner v-if="isLoading"></base-spinner>
+  <form @submit.prevent="submitForm" v-else>
     <div class="form-control">
       <label for="email">Your Email</label>
       <input type="text" id="email" v-model.trim="email" />
@@ -23,11 +27,13 @@ export default {
     return {
       email: '',
       message: '',
-      formIsValid: true
+      formIsValid: true,
+      isLoading: false,
+      error: null
     };
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       this.formIsValid = true;
       if (
         this.email === '' ||
@@ -38,13 +44,22 @@ export default {
         return;
       }
 
-      this.$store.dispatch('requests/contactCoach', {
-        coachId: this.$route.params.id,
-        email: this.email,
-        message: this.message
-      });
-
-      this.$router.replace('/coaches');
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch('requests/contactCoach', {
+          coachId: this.$route.params.id,
+          email: this.email,
+          message: this.message
+        });
+        this.$router.replace('/coaches');
+      } catch (error) {
+        this.error = error;
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    handleError() {
+      this.error = null;
     }
   }
 };

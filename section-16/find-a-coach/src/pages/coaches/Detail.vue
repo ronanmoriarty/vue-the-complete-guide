@@ -29,32 +29,31 @@
 
 <script>
 export default {
-  props: [
-      'id'
-  ],
+  props: ['id'],
   data() {
-      return {
-          selectedCoach: null
-      }
+    return {
+      selectedCoach: null
+    };
   },
   created() {
-      this.selectedCoach = this.$store.getters['coaches/coaches'].find(coach => coach.id === this.id);
+    const coaches = this.$store.getters['coaches/coaches'];
+    this.selectedCoach = coaches.find(coach => coach.id === this.id);
   },
   computed: {
     fullName() {
-        return `${this.selectedCoach.firstName} ${this.selectedCoach.lastName}`;
+      return `${this.selectedCoach.firstName} ${this.selectedCoach.lastName}`;
     },
     rate() {
-        return this.selectedCoach.hourlyRate;
+      return this.selectedCoach.hourlyRate;
     },
     contactLink() {
       return `${this.$route.path}/contact`;
     },
     areas() {
-        return this.selectedCoach.areas;
+      return this.selectedCoach.areas;
     },
     description() {
-        return this.selectedCoach.description;
+      return this.selectedCoach.description;
     }
   }
 };
