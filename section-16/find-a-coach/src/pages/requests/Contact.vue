@@ -1,24 +1,26 @@
 <template>
-  <base-dialog :show="!!error" title="An error occured" @close="handleError">
-    <p>{{ error }}</p>
-  </base-dialog>
-  <base-spinner v-if="isLoading"></base-spinner>
-  <form @submit.prevent="submitForm" v-else>
-    <div class="form-control">
-      <label for="email">Your Email</label>
-      <input type="text" id="email" v-model.trim="email" />
-    </div>
-    <div class="form-control">
-      <label for="message">Message</label>
-      <textarea row="5" id="message" v-model.trim="message" />
-    </div>
-    <p class="errors" v-if="!formIsValid">
-      Please enter a valid email and non-empty message.
-    </p>
-    <div class="actions">
-      <base-button>Send Message</base-button>
-    </div>
-  </form>
+  <div>
+    <base-dialog :show="!!error" title="An error occured" @close="handleError">
+      <p>{{ error }}</p>
+    </base-dialog>
+    <base-spinner v-if="isLoading"></base-spinner>
+    <form @submit.prevent="submitForm" v-else>
+      <div class="form-control">
+        <label for="email">Your Email</label>
+        <input type="text" id="email" v-model.trim="email" />
+      </div>
+      <div class="form-control">
+        <label for="message">Message</label>
+        <textarea row="5" id="message" v-model.trim="message" />
+      </div>
+      <p class="errors" v-if="!formIsValid">
+        Please enter a valid email and non-empty message.
+      </p>
+      <div class="actions">
+        <base-button>Send Message</base-button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
