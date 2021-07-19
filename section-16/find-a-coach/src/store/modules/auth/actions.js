@@ -54,5 +54,12 @@ export default {
         userId: responseData.localId,
         tokenExpiration: responseData.expiresIn // comes back from firebase as string representing number of seconds to expire - will transform this later.
     });
+  },
+  logout(context) {
+    context.commit('setUser', {
+        token: null,
+        userId: null,
+        tokenExpiration: null
+    });
   }
 };
