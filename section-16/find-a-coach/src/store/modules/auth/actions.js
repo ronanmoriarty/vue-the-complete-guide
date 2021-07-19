@@ -1,68 +1,92 @@
+let timer;
 export default {
   async login(context, payload) {
     return context.dispatch('auth', {
-        ...payload,
-        mode: 'login'
+      ...payload,
+      mode: 'login'
     });
   },
   async signup(context, payload) {
     return context.dispatch('auth', {
-        ...payload,
-        mode: 'signup'
+      ...payload,
+      mode: 'signup'
     });
   },
   async auth(context, payload) {
-    console.log('auth....');
     const mode = payload.mode;
-    let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBdmJMq9FAq74cAhcGz_AzFvLzg3knasy0';
-    if(mode === 'signup') {
-        url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBdmJMq9FAq74cAhcGz_AzFvLzg3knasy0';
+    let url =
+      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBdmJMq9FAq74cAhcGz_AzFvLzg3knasy0';
+    if (mode === 'signup') {
+      url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBdmJMq9FAq74cAhcGz_AzFvLzg3knasy0';
     }
-    const response = await fetch(
-        url,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            email: payload.email,
-            password: payload.password,
-            returnSecureToken: true
-          })
-        }
-      );
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: payload.email,
+        password: payload.password,
+        returnSecureToken: true
+      })
+    });
 
-      const responseData = await response.json();
+    const responseData = await response.json();
 
-      if (!response.ok) {
-        const error = new Error(responseData.message || 'Failed to login');
-        throw error;
-      }
+    if (!response.ok) {
+      const error = new Error(responseData.message || 'Failed to login');
+      throw error;
+    }
 
-      localStorage.setItem('token', responseData.idToken);
-      localStorage.setItem('userId', responseData.localId);
-    //   localStorage.setItem('expires', responseData.expiresIn); // need to convert to absolute date and time - at the moment it's just "3600", i.e. number of seconds to expiry
+    const expiresIn = +responseData.expiresIn * 1000;
+    const expirationDate = new Date().getTime() + expiresIn;
 
-      context.commit('setUser', {
-        token: responseData.idToken,
-        userId: responseData.localId,
-        tokenExpiration: responseData.expiresIn // comes back from firebase as string representing number of seconds to expire - will transform this later.
-      });
+    localStorage.setItem('token', responseData.idToken);
+    localStorage.setItem('userId', responseData.localId);
+    localStorage.setItem('tokenExpiration', expirationDate);
+
+    timer = setTimeout(() => {
+      context.dispatch('autoLogout');
+    }, expiresIn);
+
+    context.commit('setUser', {
+      token: responseData.idToken,
+      userId: responseData.localId
+    });
   },
   tryLogin(context) {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
-    if(token && userId) {
-        context.commit('setUser', {
-            token,
-            userId,
-            tokenExpiration: null
-        });
+    const tokenExpiration = +localStorage.getItem('tokenExpiration');
+    const expiresIn = tokenExpiration - new Date().getTime();
+    if(expiresIn < 0) {
+        return;
+    }
+
+    timer = setTimeout(() => {
+      context.dispatch('autoLogout');
+    }, expiresIn);
+
+    if (token && userId) {
+      context.commit('setUser', {
+        token,
+        userId
+      });
     }
   },
   logout(context) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('tokenExpiration');
+
+    clearTimeout(timer);
+
     context.commit('setUser', {
       token: null,
-      userId: null,
-      tokenExpiration: null
+      userId: null
     });
+  },
+  autoLogout(context) {
+    context.dispatch('logout');
+
+    context.commit('setAutoLogout');
   }
 };
