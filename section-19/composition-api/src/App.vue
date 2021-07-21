@@ -7,16 +7,18 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { reactive, ref, isReactive, isRef } from 'vue';
 
 export default {
   setup() {
+    const userAge = ref(21);
     const user = reactive({
       name: 'Ronan',
       age: 21
     });
 
-    console.log(user);
+    console.log(isRef(userAge));
+    console.log(isReactive(user), user.age);
 
     setTimeout(() => {
       user.name = 'Fiona';
