@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
 export default {
   setup() {
-    const user = ref({
+    const user = reactive({
       name: 'Ronan',
       age: 21
     });
@@ -19,8 +19,8 @@ export default {
     console.log(user);
 
     setTimeout(() => {
-      user.value.name = 'Fiona';
-      user.value.age = 22;
+      user.name = 'Fiona';
+      user.age = 22;
     }, 2000);
 
     return { user };
