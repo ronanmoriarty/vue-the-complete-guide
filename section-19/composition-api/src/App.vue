@@ -22,13 +22,15 @@ export default {
       age.value += 10;
     };
 
-    watch(age, function(newValue, oldValue) {
-      console.log('Old age: ' + oldValue);
-      console.log('New age: ' + newValue);
-    });
-
     const username = computed(function() {
       return `${firstName.value} ${lastName.value}`;
+    });
+
+    watch([username, age], function(newValues, oldValues) {
+      console.log("Old name: " + oldValues[0]);
+      console.log("New name: " + newValues[0]);
+      console.log("Old age: " + oldValues[1]);
+      console.log("New age: " + newValues[1]);
     });
 
     return {
