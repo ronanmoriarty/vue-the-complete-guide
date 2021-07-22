@@ -13,23 +13,36 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+// import { reactive } from 'vue';
 
 export default {
-  setup() {
-    // const goal = ref('Learn vue.js');
-    // const visible = ref(true);
-    const goalObj = reactive({
-      goal: 'Learn.js',
-      visible: true
-    });
-    const toggleVisibility = () => {
-      goalObj.visible = !goalObj.visible;
-    }
+  // setup() {
+  //   // const goal = ref('Learn vue.js');
+  //   // const visible = ref(true);
+  //   const goalObj = reactive({
+  //     goal: 'Learn.js',
+  //     visible: true
+  //   });
+  //   const toggleVisibility = () => {
+  //     goalObj.visible = !goalObj.visible;
+  //   }
 
-    return { goalObj, toggleVisibility };
+  //   return { goalObj, toggleVisibility };
+  // }
+  data() {
+    return {
+      goalObj: {
+        goal: 'Learn vue.js',
+        visible: true
+      }
+    };
+  },
+  methods: {
+    toggleVisibility() {
+      this.goalObj.visible = !this.goalObj.visible;
+    }
   }
-}
+};
 </script>
 
 <style>
