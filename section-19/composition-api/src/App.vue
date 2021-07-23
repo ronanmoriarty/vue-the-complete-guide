@@ -5,7 +5,8 @@
     <button @click="changeAge">Change age</button>
     <div>
       <input type="text" placeholder="First name" v-model="firstName" />
-      <input type="text" placeholder="Last name" v-model="lastName" />
+      <input type="text" placeholder="Last name" ref="lastNameInput" />
+      <button @click="setLastName">Set Name</button>
     </div>
   </section>
 </template>
@@ -18,6 +19,7 @@ export default {
     const age = ref(21);
     const firstName = ref("");
     const lastName = ref("");
+    const lastNameInput = ref(null);
     const changeAge = () => {
       age.value += 10;
     };
@@ -25,6 +27,10 @@ export default {
     const username = computed(function() {
       return `${firstName.value} ${lastName.value}`;
     });
+
+    const setLastName = function() {
+      lastName.value = lastNameInput.value.value;
+    };
 
     watch([username, age], function(newValues, oldValues) {
       console.log("Old name: " + oldValues[0]);
@@ -37,7 +43,8 @@ export default {
       username,
       age,
       firstName,
-      lastName,
+      lastNameInput,
+      setLastName,
       changeAge,
     };
   },
