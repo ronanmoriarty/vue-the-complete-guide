@@ -6,17 +6,19 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed } from "vue";
 export default {
   props: ["firstName", "lastName", "age"],
-    setup(props) {
-        const userName = computed(() => {
-            return `${props.firstName} ${props.lastName}`;
-        });
+  setup(props, context) {
+    const userName = computed(() => {
+      return `${props.firstName} ${props.lastName}`;
+    });
 
-        return {
-            userName
-        };
-    }
+    console.log('context', context);
+    // context.emit('some-event', 'some-data'); // i.e. same syntax as options api just replacing this with context.
+    return {
+      userName,
+    };
+  },
 };
 </script>

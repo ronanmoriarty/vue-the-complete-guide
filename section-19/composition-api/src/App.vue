@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <user-data :first-name="firstName" :last-name="lastName" :age="age"></user-data>
+    <user-data :first-name="firstName" :last-name="lastName" :age="age" class="value for implicit prop available in context.attrs"></user-data>
     <button @click="changeAge">Change age</button>
     <div>
       <input type="text" placeholder="First name" v-model="firstName" />
