@@ -1,4 +1,5 @@
 <template>
+  <teleport to="body">
   <div>
     <div class="backdrop"></div>
     <dialog open>
@@ -14,6 +15,7 @@
       </menu>
     </dialog>
   </div>
+  </teleport>
 </template>
 
 <script>
