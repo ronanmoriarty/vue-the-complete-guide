@@ -1,7 +1,6 @@
-new Vue({
-  el: '#app',
-  data: {
-    isVisible: true
+const app = Vue.createApp({
+  data() {
+    return { isVisible: true };
   },
   methods: {
     toggleBox() {
@@ -9,3 +8,5 @@ new Vue({
     }
   },
 });
+
+app.mount('#app');
